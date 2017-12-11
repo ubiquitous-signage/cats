@@ -90,12 +90,15 @@ async function translateNormalContent(item){
       item.title = payload
     })
   }
-  //content(table)の翻訳
-  if (item.contents.payload.en = "") {
+  if (item.contents.en = "") {
     isChanged = true
-    await translate.Text(item.contents.payload)
-    .then(function(translatedPayload){
-      item.contents.payload = translatedPayload
+    await translate.translateText(item.contents.en)
+    .then(function(translatedText){
+      if (translatedText == "") {
+        isChanged = false
+      } else {
+        item.contents.en = translateText
+      }
     })
   }
   if (isChanged == true) {
