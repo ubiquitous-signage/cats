@@ -25,7 +25,8 @@ async function translateText(text){
     return translation;
   })
   .catch(err => {
-    reject(err);
+    console.log(err);
+    return ""
   });
   return translatedText
 }

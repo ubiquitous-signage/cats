@@ -47,12 +47,13 @@ async function separateTableToContent(item){
         if (content.payload.en == ""){
           isChanged = true
           translateText(content.payload).then(function(translatedText){
+            if (translatedText == "") {
+              isChanged = false
+              callback()
+            }
             content.payload = translatedText
             element[childIndex] = content
             callback()
-          }).catch(function(err){
-            console.log(err);
-            isChanged = false
           })
         }
       } else {
