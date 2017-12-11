@@ -1,0 +1,17 @@
+{
+  "name": "translate_ja",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gcp_translate_word.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/translate": "^1.1.0",
+    "async": "^2.6.0",
+    "mongo-oplog": "^2.1.0",
+    "mongodb": "^3.0.0-rc0"
+  }
+}
