@@ -13,10 +13,11 @@ oplog.on('op', data => {
 });
 
 oplog.on('insert', doc => {
+  console.log('insert');
   if (doc.o.type == "table") {
     console.log(doc.o.contents[0]);
     separateTableToContent(doc.o);
-  } else if (doc.o.type == "normal") {
+  } else if (doc.o.type == "plain") {
     translateNormalContent(doc.o);
   }
 });
@@ -82,22 +83,23 @@ async function separateTableToContent(item){
 
 async function translateNormalContent(item){
   var isChanged = false
-  //titleの翻訳
   if (item.title.en == "") {
     isChanged = true
     await translateText(item.title)
-    .then(function(payload){
-      item.title = payload
+    .then(function(text){
+      item.title = text
     })
   }
-  if (item.contents.en = "") {
+  if (item.contents.en == "") {
+    console.log('esddddddddds');
     isChanged = true
-    await translate.translateText(item.contents.en)
+    await translate.translateText(item.contents.ja)
     .then(function(translatedText){
+      console.log(translatedText);
       if (translatedText == "") {
         isChanged = false
       } else {
-        item.contents.en = translateText
+        item.contents.en = translatedText
       }
     })
   }
