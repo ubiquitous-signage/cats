@@ -50,6 +50,9 @@ async function separateTableToContent(item){
             content.payload = translatedText
             element[childIndex] = content
             callback()
+          }).catch(function(err){
+            console.log(err);
+            isChanged = false
           })
         }
       } else {
@@ -108,6 +111,9 @@ function translateText(payload){
       .then(function(translatedText){
         payload.en = translatedText
         resolve(payload)
+      }).catch(function(err){
+        console.log(err);
+        reject(err)
       })
     }
   })
