@@ -25,7 +25,7 @@ oplog.on('update', doc => {
   console.log("update");
   if (doc.o.type == "table") {
     separateTableToContent(doc.o);
-  } else if (doc.o.type == "normal") {
+  } else if (doc.o.type == "plain") {
     translateNormalContent(doc.o);
   }
 });
